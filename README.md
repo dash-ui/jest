@@ -9,11 +9,11 @@
   <a href="https://bundlephobia.com/result?p=@-ui/jest">
     <img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/@-ui/jest?style=for-the-badge&labelColor=24292e">
   </a>
-  <a aria-label="Code coverage report" href="https://codecov.io/gh/dash-ui/-ui">
-    <img alt="Code coverage" src="https://img.shields.io/codecov/c/gh/dash-ui/-ui?style=for-the-badge&labelColor=24292e">
+  <a aria-label="Code coverage report" href="https://codecov.io/gh/dash-ui/jest">
+    <img alt="Code coverage" src="https://img.shields.io/codecov/c/gh/dash-ui/jest?style=for-the-badge&labelColor=24292e">
   </a>
-  <a aria-label="Build status" href="https://travis-ci.org/dash-ui/-ui">
-    <img alt="Build status" src="https://img.shields.io/travis/dash-ui/-ui?style=for-the-badge&labelColor=24292e">
+  <a aria-label="Build status" href="https://travis-ci.org/dash-ui/jest">
+    <img alt="Build status" src="https://img.shields.io/travis/dash-ui/jest?style=for-the-badge&labelColor=24292e">
   </a>
   <a aria-label="NPM version" href="https://www.npmjs.com/package/@-ui/jest">
     <img alt="NPM Version" src="https://img.shields.io/npm/v/@-ui/jest?style=for-the-badge&labelColor=24292e">
@@ -26,7 +26,7 @@
 <pre align="center">npm i @-ui/jest</pre>
 <hr>
 
-
+Jest utilities for `dash-ui`
 
 ## Quick Start
 
@@ -35,6 +35,9 @@ import _ from '@-ui/jest'
 ```
 
 ## API
+
+## Credit
+This was inspired by and based heavily on work by [jest-emotion](https://github.com/emotion-js/emotion/tree/master/packages/jest-emotion)
 
 ## LICENSE
 
