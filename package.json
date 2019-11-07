@@ -40,15 +40,14 @@
     ]
   },
   "devDependencies": {
-    "@lunde/create-pkg": "^1.0.78",
     "@lunde/babel-preset-es": "latest",
-    "jest": "latest",
     "babel-eslint": "latest",
     "cross-env": "latest",
     "eslint": "latest",
     "eslint-import-resolver-jest": "latest",
     "eslint-plugin-jest": "latest",
     "husky": "latest",
+    "jest": "latest",
     "lint-staged": "latest",
     "prettier": "latest",
     "rimraf": "^2.6.3"
