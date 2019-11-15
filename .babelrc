@@ -15,23 +15,6 @@
   "env": {
     "test": {
       "presets": ["@babel/react"]
-    },
-    "es": {
-      "presets": [
-        [
-          "@lunde/es",
-          {
-            "env": {
-              "modules": false,
-              "targets": {
-                "browsers": "> 2%"
-              }
-            },
-            "objectAssign": false,
-            "typescript": false
-          }
-        ]
-      ]
     }
   }
 }
