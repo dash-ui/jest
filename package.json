@@ -1,13 +1,21 @@
 {
   "name": "@-ui/jest",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/dash-ui/jest#readme",
   "repository": "github:dash-ui/jest",
   "bugs": "https://github.com/dash-ui/jest/issues",
   "license": "MIT",
   "description": "Jest utilities for dash-ui",
   "keywords": [
-    "jest"
+    "jest",
+    "dash",
+    "dash ui",
+    "-ui",
+    "jest serializer",
+    "css",
+    "jest css serializer",
+    "jest plugin",
+    "jest assertions"
   ],
   "main": "dist/index.js",
   "files": [
