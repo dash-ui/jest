@@ -2,10 +2,10 @@
 
 exports[`@-ui/jest with DOM elements disabled does not replace class names or insert styles into DOM element snapshots 1`] = `
 "<div
-  class=\\"dash-9rfate\\"
+  class=\\"-ui-9rfate\\"
 >
   <svg
-    class=\\"dash-1lhfaaq\\"
+    class=\\"-ui-1lhfaaq\\"
   />
 </div>"
 `;
