@@ -1,6 +1,6 @@
 {
   "name": "@-ui/jest",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "homepage": "https://github.com/dash-ui/jest#readme",
   "repository": "github:dash-ui/jest",
   "bugs": "https://github.com/dash-ui/jest/issues",
@@ -20,7 +20,8 @@
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "files": [
-    "/dist"
+    "/dist",
+    "/types"
   ],
   "sideEffects": false,
   "scripts": {
