@@ -1,4 +1,4 @@
-import styles from '@-ui/styles'
+import styles from '@dash-ui/styles'
 import renderer from 'react-test-renderer'
 import * as enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -15,4 +15,4 @@ export const createStyle = (
   return myStyles(defs)
 }
 
-export const renderJson = children => renderer.create(children).toJSON()
+export const renderJson = (children) => renderer.create(children).toJSON()

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import prettyFormat from 'pretty-format'
-import styles from '@-ui/styles'
+import styles from '@dash-ui/styles'
 import {createStyle, renderJson} from 'test-utils'
 import serializer, {createSerializer} from 'index'
 
@@ -14,7 +14,7 @@ let dashPlugin = createSerializer()
 
 const {ReactElement, ReactTestComponent, DOMElement} = prettyFormat.plugins
 
-describe('@-ui/jest with dom elements', () => {
+describe('@dash-ui/jest with dom elements', () => {
   it('replaces class names and inserts styles into React test component snapshots', () => {
     const style = createStyle()
     const tree = renderJson(
@@ -49,7 +49,7 @@ describe('@-ui/jest with dom elements', () => {
   })
 })
 
-describe('@-ui/jest with DOM elements disabled', () => {
+describe('@dash-ui/jest with DOM elements disabled', () => {
   const dashPlugin = createSerializer({DOMElements: false})
 
   it('replaces class names and inserts styles into React test component snapshots', () => {
@@ -97,7 +97,7 @@ it('does not replace class names that are not from -ui', () => {
   expect(output).toMatchSnapshot()
 })
 
-describe('@-ui/styles with nested selectors', () => {
+describe('@dash-ui/styles with nested selectors', () => {
   it('replaces class names and inserts styles into React test component snapshots', () => {
     const style = createStyle()
     const tree = renderJson(<div className={style('div')} />)

@@ -49,13 +49,13 @@ describe('toHaveStyleRule', () => {
   it('supports enzyme render methods', () => {
     const style = createStyle()
     // eslint-disable-next-line
-    const Component = props => (
+    const Component = (props) => (
       <div className={style('div')}>
         <svg className={style('svg')} />
       </div>
     )
 
-    enzymeMethods.forEach(method => {
+    enzymeMethods.forEach((method) => {
       const wrapper = enzyme[method](<Component />)
       expect(wrapper).toHaveStyleRule('color', 'red')
       expect(wrapper).not.toHaveStyleRule('width', '100%')

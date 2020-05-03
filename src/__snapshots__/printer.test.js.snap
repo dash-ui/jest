@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@-ui/jest with DOM elements disabled does not replace class names or insert styles into DOM element snapshots 1`] = `
+exports[`@dash-ui/jest with DOM elements disabled does not replace class names or insert styles into DOM element snapshots 1`] = `
 "<div
-  class=\\"-ui-9rfate\\"
+  class=\\"ui-9rfate\\"
 >
   <svg
-    class=\\"-ui-1lhfaaq\\"
+    class=\\"ui-1lhfaaq\\"
   />
 </div>"
 `;
 
-exports[`@-ui/jest with DOM elements disabled replaces class names and inserts styles into React test component snapshots 1`] = `
+exports[`@dash-ui/jest with DOM elements disabled replaces class names and inserts styles into React test component snapshots 1`] = `
 ".-ui-1 {
   color: red;
 }
@@ -28,7 +28,7 @@ exports[`@-ui/jest with DOM elements disabled replaces class names and inserts s
 </div>"
 `;
 
-exports[`@-ui/jest with dom elements replaces class names and inserts styles into DOM element snapshots 1`] = `
+exports[`@dash-ui/jest with dom elements replaces class names and inserts styles into DOM element snapshots 1`] = `
 ".-ui-1 {
   color: red;
 }
@@ -46,7 +46,7 @@ exports[`@-ui/jest with dom elements replaces class names and inserts styles int
 </div>"
 `;
 
-exports[`@-ui/jest with dom elements replaces class names and inserts styles into React test component snapshots 1`] = `
+exports[`@dash-ui/jest with dom elements replaces class names and inserts styles into React test component snapshots 1`] = `
 ".-ui-1 {
   color: red;
 }

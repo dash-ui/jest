@@ -16,10 +16,10 @@ const getClassNames = (selectors, classes) =>
 const getClassNamesFromTestRenderer = (selectors, {props}) =>
   getClassNames(selectors, props ? props.className || props.class : null)
 
-const shouldDive = node =>
+const shouldDive = (node) =>
   typeof node.dive === 'function' && typeof node.type() !== 'string'
 
-const isTagWithClassName = node =>
+const isTagWithClassName = (node) =>
   node.prop('className') && typeof node.type() === 'string'
 
 const getClassNamesFromEnzyme = (selectors, node) => {
@@ -40,7 +40,7 @@ const getClassNamesFromCheerio = (selectors, node) => {
 const getClassNamesFromDOMElement = (selectors, node) =>
   getClassNames(selectors, node.getAttribute('class'))
 
-export const isReactElement = val => {
+export const isReactElement = (val) => {
   if (val.$$typeof === Symbol.for('react.test.json')) {
     return true
   } else if (
@@ -57,16 +57,16 @@ export const isReactElement = val => {
 
 const domElementPattern = /^((HTML|SVG)\w*)?Element$/
 
-export const isDOMElement = val =>
+export const isDOMElement = (val) =>
   val.nodeType === 1 &&
   val.constructor &&
   val.constructor.name &&
   domElementPattern.test(val.constructor.name)
 
-const isEnzymeElement = val => typeof val.findWhere === 'function'
-const isCheerioElement = val => val.cheerio === '[cheerio object]'
+const isEnzymeElement = (val) => typeof val.findWhere === 'function'
+const isCheerioElement = (val) => val.cheerio === '[cheerio object]'
 
-export const getClassNamesFromNodes = nodes =>
+export const getClassNamesFromNodes = (nodes) =>
   nodes.reduce((selectors, node) => {
     if (isReactElement(node)) {
       return getClassNamesFromTestRenderer(selectors, node)
@@ -83,7 +83,7 @@ let keyframesPattern = /^@keyframes\s+(animation-[^{\s]+)+/
 
 let removeCommentPattern = /\/\*[\s\S]*?\*\//g
 
-const getElementRules = element => {
+const getElementRules = (element) => {
   const nonSpeedyRule = element.textContent
   if (nonSpeedyRule) {
     return [nonSpeedyRule]
@@ -92,7 +92,7 @@ const getElementRules = element => {
     return []
   }
   // $FlowFixMe - flow doesn't know about `cssRules` property
-  return [].slice.call(element.sheet.cssRules).map(cssRule => cssRule.cssText)
+  return [].slice.call(element.sheet.cssRules).map((cssRule) => cssRule.cssText)
 }
 
 export const getStylesFromClassNames = (classNames, elements) => {
@@ -106,7 +106,7 @@ export const getStylesFromClassNames = (classNames, elements) => {
   }
 
   let keyPatten = new RegExp(`^(${keys.join('|')})-`)
-  let filteredClassNames = classNames.filter(className =>
+  let filteredClassNames = classNames.filter((className) =>
     keyPatten.test(className)
   )
   if (!filteredClassNames.length) {
@@ -116,7 +116,7 @@ export const getStylesFromClassNames = (classNames, elements) => {
   let keyframes = {}
   let styles = ''
 
-  flatMap(elements, getElementRules).forEach(rule => {
+  flatMap(elements, getElementRules).forEach((rule) => {
     if (selectorPattern.test(rule)) {
       styles += rule
     }
@@ -137,7 +137,7 @@ export const getStylesFromClassNames = (classNames, elements) => {
     let keyframesNameCache = {}
     let index = 0
 
-    styles = styles.replace(keyframesNamePattern, name => {
+    styles = styles.replace(keyframesNamePattern, (name) => {
       if (keyframesNameCache[name] === undefined) {
         keyframesNameCache[name] = `animation-${index++}`
         keyframesStyles += keyframes[name]
@@ -145,7 +145,7 @@ export const getStylesFromClassNames = (classNames, elements) => {
       return keyframesNameCache[name]
     })
 
-    keyframesStyles = keyframesStyles.replace(keyframesNamePattern, value => {
+    keyframesStyles = keyframesStyles.replace(keyframesNamePattern, (value) => {
       return keyframesNameCache[value]
     })
   }
@@ -156,15 +156,15 @@ export const getStylesFromClassNames = (classNames, elements) => {
 export const getStyleElements = () =>
   Array.from(document.querySelectorAll('style[data-dash]'))
 
-let unique = arr => Array.from(new Set(arr))
+let unique = (arr) => Array.from(new Set(arr))
 
-export const getKeys = elements =>
-  unique(elements.map(element => element.getAttribute('data-dash'))).filter(
+export const getKeys = (elements) =>
+  unique(elements.map((element) => element.getAttribute('data-dash'))).filter(
     Boolean
   )
 
 export const hasClassNames = (classNames, selectors, target) =>
-  selectors.some(selector => {
+  selectors.some((selector) => {
     // if no target, use className of the specific css rule and try to find it
     // in the list of received node classNames to make sure this css rule
     // applied for root element
@@ -179,7 +179,7 @@ export const hasClassNames = (classNames, selectors, target) =>
 
 export const getMediaRules = (rules, media) =>
   rules
-    .filter(rule => {
+    .filter((rule) => {
       const isMediaMatch = rule.media
         ? rule.media.replace(/\s/g, '').includes(media.replace(/\s/g, ''))
         : false
@@ -200,7 +200,7 @@ const isA = (typeName, value) =>
  * Taken from
  * https://github.com/facebook/jest/blob/be4bec387d90ac8d6a7596be88bf8e4994bc3ed9/packages/expect/src/jasmine_utils.js#L36
  */
-const isAsymmetric = obj => obj && isA('Function', obj.asymmetricMatch)
+const isAsymmetric = (obj) => obj && isA('Function', obj.asymmetricMatch)
 
 const valueMatches = (declaration, value) => {
   if (value instanceof RegExp) {
@@ -225,12 +225,12 @@ const toHaveStyleRule = (received, property, value, options = {}) => {
   }
   const declaration = preparedRules
     .filter(
-      rule =>
+      (rule) =>
         rule.type === RULE_TYPES.rule &&
         hasClassNames(classNames, rule.selectors, target)
     )
     .reduce((decs, rule) => decs.concat(rule.declarations), [])
-    .filter(dec => dec.type === 'declaration' && dec.property === property)
+    .filter((dec) => dec.type === 'declaration' && dec.property === property)
     .pop()
 
   if (!declaration) {
@@ -338,8 +338,8 @@ export const createSerializer = (opt = {}) => {
     test(val) {
       return (
         val &&
-        (!cache.has(val) &&
-          (isReactElement(val) || (DOMElements && isDOMElement(val))))
+        !cache.has(val) &&
+        (isReactElement(val) || (DOMElements && isDOMElement(val)))
       )
     },
 

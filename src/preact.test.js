@@ -13,7 +13,7 @@ afterEach(() => {
   document.getElementsByTagName('html')[0].innerHTML = ''
 })
 
-describe('@-ui/jest with preact', () => {
+describe('@dash-ui/jest with preact', () => {
   it('replaces class names and inserts styles into preact test component snapshots', () => {
     const style = createStyle()
     const tree = render(

@@ -1,6 +1,6 @@
 {
-  "name": "@-ui/jest",
-  "version": "1.1.1",
+  "name": "@dash-ui/jest",
+  "version": "1.0.0",
   "homepage": "https://github.com/dash-ui/jest#readme",
   "repository": "github:dash-ui/jest",
   "bugs": "https://github.com/dash-ui/jest/issues",
@@ -10,22 +10,35 @@
     "jest",
     "dash",
     "dash ui",
-    "-ui",
     "jest serializer",
     "css",
     "jest css serializer",
     "jest plugin",
-    "jest assertions"
+    "jest assertions",
+    "jest dash assertions",
+    "jest dash ui",
+    "jest dash serializer"
   ],
-  "main": "dist/index.js",
+  "main": "dist/main/index.js",
   "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/main/index.js"
+    },
+    "./package.json": "./package.json",
+    "./": "./"
+  },
   "files": [
     "/dist",
     "/types"
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "babel src -d dist -x .js --ignore \"**/*.test.js\",\"**/test.js\" --delete-dir-on-start",
+    "build": "npm run build-esm && npm run build-main",
+    "build-esm": "npm run compile -- -d dist/esm --env-name esm --out-file-extension .mjs",
+    "build-main": "npm run compile -- -d dist/main --env-name main",
+    "compile": "babel src -x .js --ignore \"**/*.test.js\" --delete-dir-on-start",
     "format": "prettier --write \"**/*.{js,md,yml,json,babelrc,eslintrc,prettierrc}\"",
     "lint": "eslint .",
     "prepublishOnly": "npm run lint && npm run test && npm run build && npm run format",
@@ -47,23 +60,23 @@
     ]
   },
   "devDependencies": {
-    "@-ui/styles": "^1.0.37",
     "@babel/preset-react": "^7.7.0",
+    "@dash-ui/styles": "^0.1.0",
     "@lunde/babel-preset-es": "latest",
-    "babel-eslint": "latest",
-    "cross-env": "latest",
+    "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "enzyme-to-json": "^3.4.3",
-    "eslint": "latest",
+    "eslint": "^6.8.0",
     "eslint-import-resolver-jest": "latest",
-    "eslint-plugin-jest": "latest",
-    "husky": "latest",
-    "jest": "latest",
-    "lint-staged": "latest",
+    "eslint-plugin-jest": "^23.8.2",
+    "husky": "^4.2.5",
+    "jest": "^25.5.4",
+    "lint-staged": "^10.2.2",
     "preact": "10",
     "preact-render-to-json": "^3.6.6",
-    "prettier": "latest",
+    "prettier": "^2.0.5",
     "pretty-format": "^24.9.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -71,7 +84,7 @@
     "rimraf": "^2.6.3"
   },
   "dependencies": {
-    "chalk": "^3.0.0",
+    "chalk": "^4.0.0",
     "css": "^2.2.4"
   },
   "peerDependencies": {}
