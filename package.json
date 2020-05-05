@@ -1,6 +1,6 @@
 {
   "name": "@dash-ui/jest",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/dash-ui/jest#readme",
   "repository": "github:dash-ui/jest",
   "bugs": "https://github.com/dash-ui/jest/issues",
@@ -24,7 +24,10 @@
   "exports": {
     ".": {
       "import": "./dist/esm/index.mjs",
-      "require": "./dist/main/index.js"
+      "require": "./dist/main/index.js",
+      "default": "./dist/main/index.js",
+      "source": "./src/index.ts",
+      "types": "./types/index.d.ts"
     },
     "./package.json": "./package.json",
     "./": "./"
@@ -61,7 +64,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.7.0",
-    "@dash-ui/styles": "^0.1.0",
+    "@dash-ui/styles": "^0.2.2",
     "@lunde/babel-preset-es": "latest",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
