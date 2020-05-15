@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import prettyFormat from 'pretty-format'
-import styles from '@dash-ui/styles'
+import {createStyles} from '@dash-ui/styles'
 import {createStyle, renderJson} from 'test-utils'
 import serializer, {createSerializer} from 'index'
 
@@ -119,7 +119,7 @@ describe('@dash-ui/styles with nested selectors', () => {
 })
 
 it('prints speedy styles', () => {
-  const style = styles.create({speedy: true})({div: `color: hotpink;`})
+  const style = createStyles({speedy: true})({div: `color: hotpink;`})
   const tree = renderJson(<div className={style('div')} />)
 
   expect(

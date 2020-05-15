@@ -1,4 +1,4 @@
-import styles from '@dash-ui/styles'
+import {createStyles} from '@dash-ui/styles'
 import renderer from 'react-test-renderer'
 import * as enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -11,7 +11,7 @@ export const createStyle = (
     svg: {width: '100%'},
   }
 ) => {
-  const myStyles = styles.create()
+  const myStyles = createStyles()
   return myStyles(defs)
 }
 
