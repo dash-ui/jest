@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 /** @jsx h */
 // eslint-disable-next-line
 import {h} from 'preact'

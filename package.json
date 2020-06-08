@@ -1,9 +1,10 @@
 {
   "name": "@dash-ui/jest",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "homepage": "https://github.com/dash-ui/jest#readme",
   "repository": "github:dash-ui/jest",
   "bugs": "https://github.com/dash-ui/jest/issues",
+  "author": "Jared Lunde <jared.lunde@gmail.com> (https://jaredLunde.com)",
   "license": "MIT",
   "description": "Jest utilities for dash-ui",
   "keywords": [
@@ -20,29 +21,31 @@
     "jest dash serializer"
   ],
   "main": "dist/main/index.js",
+  "module": "dist/module/index.js",
+  "source": "src/index.js",
   "types": "types/index.d.ts",
   "exports": {
     ".": {
+      "browser": "./dist/module/index.js",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/main/index.js",
-      "default": "./dist/main/index.js",
-      "source": "./src/index.ts",
-      "types": "./types/index.d.ts"
+      "source": "./src/index.js",
+      "types": "./types/index.d.ts",
+      "default": "./dist/main/index.js"
     },
     "./package.json": "./package.json",
     "./": "./"
   },
   "files": [
     "/dist",
+    "/src",
     "/types"
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "npm run build-esm && npm run build-main",
-    "build-esm": "npm run compile -- -d dist/esm --env-name esm --out-file-extension .mjs",
-    "build-main": "npm run compile -- -d dist/main --env-name main",
-    "compile": "babel src -x .js --ignore \"**/*.test.js\" --delete-dir-on-start",
-    "format": "prettier --write \"**/*.{js,md,yml,json,babelrc,eslintrc,prettierrc}\"",
+    "build": "lundle build",
+    "dev": "lundle build -f module,cjs -w",
+    "format": "prettier --write \"{,!(node_modules|dist|coverage)/**/}*.{ts,js,md,yml,json}\"",
     "lint": "eslint .",
     "prepublishOnly": "npm run lint && npm run test && npm run build && npm run format",
     "test": "jest",
@@ -58,33 +61,90 @@
       "eslint",
       "prettier --write"
     ],
-    "**/*.{md,yml,json,babelrc,eslintrc,prettierrc}": [
+    "**/*.{md,yml,json,eslintrc,prettierrc}": [
       "prettier --write"
     ]
   },
+  "eslintConfig": {
+    "extends": [
+      "lunde"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.test.js"
+        ],
+        "settings": {
+          "import/resolver": {
+            "node": {
+              "moduleDirectory": [
+                "node_modules",
+                "src/",
+                "test/"
+              ]
+            },
+            "jest": {
+              "jestConfigFile": "./package.json"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "eslintIgnore": [
+    "node_modules",
+    "coverage",
+    "dist",
+    "test",
+    "*.config.js"
+  ],
+  "jest": {
+    "moduleDirectories": [
+      "node_modules",
+      "src",
+      "test"
+    ],
+    "moduleNameMapper": {
+      "^test-utils$": "<rootDir>/test/test-utils.js"
+    },
+    "testMatch": [
+      "<rootDir>/src/**/?(*.)test.js"
+    ],
+    "collectCoverageFrom": [
+      "**/src/**/*.js"
+    ],
+    "setupFilesAfterEnv": [
+      "./test/setup.js"
+    ],
+    "snapshotResolver": "./test/resolve-snapshot.js",
+    "globals": {
+      "__DEV__": true
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "bracketSpacing": false
+  },
   "devDependencies": {
-    "@babel/preset-react": "^7.7.0",
-    "@dash-ui/styles": "^0.4.0",
-    "@lunde/babel-preset-es": "latest",
-    "babel-eslint": "^10.1.0",
-    "cross-env": "^7.0.2",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1",
-    "enzyme-to-json": "^3.4.3",
-    "eslint": "^6.8.0",
-    "eslint-import-resolver-jest": "latest",
-    "eslint-plugin-jest": "^23.8.2",
-    "husky": "^4.2.5",
-    "jest": "^25.5.4",
-    "lint-staged": "^10.2.2",
+    "@dash-ui/styles": "^0.5.0",
+    "babel-jest": "latest",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.5.0",
+    "eslint": "latest",
+    "eslint-config-lunde": "latest",
+    "husky": "latest",
+    "jest": "latest",
+    "lint-staged": "latest",
+    "lundle": "^0.4.1",
     "preact": "10",
     "preact-render-to-json": "^3.6.6",
-    "prettier": "^2.0.5",
+    "prettier": "latest",
     "pretty-format": "^24.9.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-test-renderer": "^16.12.0",
-    "rimraf": "^2.6.3"
+    "react-dom": "^16.13.1",
+    "react-test-renderer": "^16.12.0"
   },
   "dependencies": {
     "chalk": "^4.0.0",

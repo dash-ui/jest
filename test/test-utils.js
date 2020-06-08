@@ -1,9 +1,9 @@
 import {createStyles} from '@dash-ui/styles'
 import renderer from 'react-test-renderer'
-import * as enzyme from 'enzyme'
+import * as Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
-enzyme.configure({adapter: new Adapter()})
+Enzyme.configure({adapter: new Adapter()})
 
 export const createStyle = (
   defs = {

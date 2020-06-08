@@ -363,5 +363,5 @@ export const createSerializer = (opt = {}) => {
   }
 }
 
-export let {print, test} = createSerializer()
+export const {print, test} = createSerializer()
 export default {print, test}
