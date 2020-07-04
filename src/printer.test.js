@@ -86,7 +86,7 @@ describe('@dash-ui/jest with DOM elements disabled', () => {
   })
 })
 
-it('does not replace class names that are not from -ui', () => {
+it('does not replace class names that are not from dash-ui', () => {
   const style = createStyle()
   const tree = renderJson(<div className={`${style('div')} net-42 net`} />)
 
@@ -107,12 +107,12 @@ describe('@dash-ui/styles with nested selectors', () => {
     })
 
     expect(output.replace(/\s+/g, ' ')).toBe(
-      `.-ui-0 {
+      `.dash-ui-0 {
         color: red;
       }
       
       <div
-        className="-ui-0"
+        className="dash-ui-0"
       />`.replace(/\s+/g, ' ')
     )
   })

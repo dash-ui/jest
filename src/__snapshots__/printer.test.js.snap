@@ -11,75 +11,75 @@ exports[`@dash-ui/jest with DOM elements disabled does not replace class names o
 `;
 
 exports[`@dash-ui/jest with DOM elements disabled replaces class names and inserts styles into React test component snapshots 1`] = `
-".-ui-1 {
+".dash-ui-1 {
   color: red;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   width: 100%;
 }
 
 <div
-  className=\\"-ui-1\\"
+  className=\\"dash-ui-1\\"
 >
   <svg
-    className=\\"-ui-0\\"
+    className=\\"dash-ui-0\\"
   />
 </div>"
 `;
 
 exports[`@dash-ui/jest with dom elements replaces class names and inserts styles into DOM element snapshots 1`] = `
-".-ui-1 {
+".dash-ui-1 {
   color: red;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   width: 100%;
 }
 
 <div
-  class=\\"-ui-1\\"
+  class=\\"dash-ui-1\\"
 >
   <svg
-    class=\\"-ui-0\\"
+    class=\\"dash-ui-0\\"
   />
 </div>"
 `;
 
 exports[`@dash-ui/jest with dom elements replaces class names and inserts styles into React test component snapshots 1`] = `
-".-ui-1 {
+".dash-ui-1 {
   color: red;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   width: 100%;
 }
 
 <div
-  className=\\"-ui-1\\"
+  className=\\"dash-ui-1\\"
 >
   <svg
-    className=\\"-ui-0\\"
+    className=\\"dash-ui-0\\"
   />
 </div>"
 `;
 
-exports[`does not replace class names that are not from -ui 1`] = `
-".-ui-0 {
+exports[`does not replace class names that are not from dash-ui 1`] = `
+".dash-ui-0 {
   color: red;
 }
 
 <div
-  className=\\"-ui-0 net-42 net\\"
+  className=\\"dash-ui-0 net-42 net\\"
 />"
 `;
 
 exports[`prints speedy styles 1`] = `
-".-ui-0 {
+".dash-ui-0 {
   color: hotpink;
 }
 
 <div
-  className=\\"-ui-0\\"
+  className=\\"dash-ui-0\\"
 />"
 `;

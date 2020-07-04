@@ -258,7 +258,7 @@ export const matchers = {toHaveStyleRule}
 
 //
 // Pretty serialization
-const defaultClassNameReplacer = (className, index) => `-ui-${index}`
+const defaultClassNameReplacer = (className, index) => `dash-ui-${index}`
 const componentSelectorClassNamePattern = /^e[a-zA-Z0-9]+[0-9]+$/
 export const replaceClassNames = (
   classNames,
