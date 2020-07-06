@@ -152,7 +152,7 @@
     "husky": "latest",
     "jest": "latest",
     "lint-staged": "latest",
-    "lundle": "^0.4.1",
+    "lundle": "^0.4.9",
     "preact": "10",
     "preact-render-to-json": "^3.6.6",
     "prettier": "latest",
