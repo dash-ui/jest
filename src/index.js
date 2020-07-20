@@ -174,7 +174,7 @@ export const hasClassNames = (classNames, selectors, target) =>
     // check if selector (className) of specific css rule match target
     return target instanceof RegExp
       ? target.test(selector)
-      : selector.includes(target)
+      : minify(selector).includes(minify(target))
   })
 
 export const getMediaRules = (rules, media) =>
@@ -211,8 +211,12 @@ const valueMatches = (declaration, value) => {
     return value.asymmetricMatch(declaration.value)
   }
 
-  return value === declaration.value
+  return minify(value) === minify(declaration.value)
 }
+
+const minLeft = /([:;,([{}>~/\s]|\/\*)\s+/g
+const minRight = /\s+([:;,)\]{}>~/!]|\*\/)/g
+const minify = (s) => s.trim().replace(minLeft, '$1').replace(minRight, '$1')
 
 const toHaveStyleRule = (received, property, value, options = {}) => {
   const {target, media} = options
@@ -230,7 +234,10 @@ const toHaveStyleRule = (received, property, value, options = {}) => {
         hasClassNames(classNames, rule.selectors, target)
     )
     .reduce((decs, rule) => decs.concat(rule.declarations), [])
-    .filter((dec) => dec.type === 'declaration' && dec.property === property)
+    .filter(
+      (dec) =>
+        dec.type === 'declaration' && minify(dec.property) === minify(property)
+    )
     .pop()
 
   if (!declaration) {
