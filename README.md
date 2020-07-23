@@ -1,18 +1,19 @@
 <hr>
-<div align="center">
-  <br/>
   <br/>
   <img src='https://github.com/dash-ui/styles/raw/master/assets/logo.png'/>
+  <blockquote>Jest utilities for <a href="https://github.com/dash-ui/styles">dash-ui</a></blockquote>
+  
+  <pre>npm i -D @dash-ui/jest</pre>
   <br/>
-  <br/>
-</div>
 
-<p align="center">
+  <a aria-label="Types" href="https://www.npmjs.com/package/@dash-ui/jest">
+    <img alt="Types" src="https://img.shields.io/npm/types/@dash-ui/jest?style=for-the-badge&labelColor=24292e">
+  </a>
   <a aria-label="Code coverage report" href="https://codecov.io/gh/dash-ui/jest">
     <img alt="Code coverage" src="https://img.shields.io/codecov/c/gh/dash-ui/jest?style=for-the-badge&labelColor=24292e">
   </a>
-  <a aria-label="Build status" href="https://travis-ci.org/dash-ui/jest">
-    <img alt="Build status" src="https://img.shields.io/travis/dash-ui/jest?style=for-the-badge&labelColor=24292e">
+  <a aria-label="Build status" href="https://travis-ci.com/dash-ui/jest">
+    <img alt="Build status" src="https://img.shields.io/travis/com/dash-ui/jest?style=for-the-badge&labelColor=24292e">
   </a>
   <a aria-label="NPM version" href="https://www.npmjs.com/package/@dash-ui/jest">
     <img alt="NPM Version" src="https://img.shields.io/npm/v/@dash-ui/jest?style=for-the-badge&labelColor=24292e">
@@ -20,16 +21,12 @@
   <a aria-label="License" href="https://jaredlunde.mit-license.org/">
     <img alt="MIT License" src="https://img.shields.io/npm/l/@dash-ui/jest?style=for-the-badge&labelColor=24292e">
   </a>
-</p>
 
-<pre align="center">npm i -D @dash-ui/jest</pre>
 <hr>
 
-Jest utilities for [**dash-ui**](https://github.com/dash-ui/styles)
+## Dash snapshots
 
-## dash-ui snapshots
-
-The easiest way to test React, Preact, and Preact X components with @dash-ui is using the snapshot serializer. You can register the serializer via the `snapshotSerializers` configuration property in your jest configuration like so:
+The easiest way to test React, Preact, and Preact X components with [dash-ui](https://github.com/dash-ui) is using the snapshot serializer. You can register the serializer via the `snapshotSerializers` configuration property in your jest configuration like so:
 
 ```js
 // jest.config.js
@@ -44,7 +41,7 @@ Or you can customize the serializer via the `createSerializer` method like so: (
 ```jsx harmony
 import React from 'react'
 import renderer from 'react-test-renderer'
-import styles from '@dash-ui/styles'
+import {styles} from '@dash-ui/styles'
 import serializer from '@dash-ui/jest'
 
 expect.addSnapshotSerializer(serializer)
