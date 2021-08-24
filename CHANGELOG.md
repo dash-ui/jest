@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/dash-ui/jest/compare/v2.0.1...v2.1.0) (2021-08-24)
+
+### Features
+
+- add supports matcher ([0967e38](https://github.com/dash-ui/jest/commit/0967e389e8350e95259d8357db15ffe8f69041b9))
+
 ### [2.0.1](https://github.com/dash-ui/jest/compare/v2.0.0...v2.0.1) (2020-07-20)
 
 ### Bug Fixes
