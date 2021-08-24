@@ -193,7 +193,7 @@ export const getSupportsRules = (rules, supports) =>
     .filter((rule) => {
       const isSupportsMatch = rule.supports
         ? rule.supports
-            .replace(/\s+/g, ' ')
+            .replace(/\s/g, '')
             .trim()
             .endsWith(supports.replace(/\s/g, '').trim())
         : false
