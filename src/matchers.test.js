@@ -155,4 +155,66 @@ describe('toHaveStyleRule', () => {
     })
     expect(tree).toHaveStyleRule('color', 'white')
   })
+
+  it('matches styles with target and supports options', () => {
+    const style = createStyle({
+      div: `
+        color: white;
+        @supports (min-width: 420px) {
+          color: green;
+          &:hover {
+            color: yellow;
+          }
+        }
+      `,
+    })
+
+    const tree = renderJson(
+      <div className={style('div')}>
+        <span>Test</span>
+      </div>
+    )
+
+    expect(tree).toHaveStyleRule('color', 'yellow', {
+      target: ':hover',
+      supports: '(min-width: 420px)',
+    })
+    expect(tree).toHaveStyleRule('color', 'green', {
+      supports: '(min-width: 420px)',
+    })
+    expect(tree).toHaveStyleRule('color', 'white')
+  })
+
+  it('matches styles with target and supports and media options', () => {
+    const style = createStyle({
+      div: `
+        color: white;
+        @media (min-width: 420em) {
+          @supports (min-width: 420px) {
+            color: green;
+            &:hover {
+              color: yellow;
+            }
+          }
+        }
+      `,
+    })
+
+    const tree = renderJson(
+      <div className={style('div')}>
+        <span>Test</span>
+      </div>
+    )
+
+    expect(tree).toHaveStyleRule('color', 'yellow', {
+      target: ':hover',
+      supports: '(min-width: 420px)',
+      media: '(min-width: 420em)',
+    })
+    expect(tree).toHaveStyleRule('color', 'green', {
+      supports: '(min-width: 420px)',
+      media: '(min-width: 420em)',
+    })
+    expect(tree).toHaveStyleRule('color', 'white')
+  })
 })

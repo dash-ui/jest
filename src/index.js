@@ -7,6 +7,7 @@ const flatMap = (arr, iteratee) => [].concat(...arr.map(iteratee))
 
 export const RULE_TYPES = {
   media: 'media',
+  supports: 'supports',
   rule: 'rule',
 }
 
@@ -187,6 +188,23 @@ export const getMediaRules = (rules, media) =>
     })
     .reduce((mediaRules, mediaRule) => mediaRules.concat(mediaRule.rules), [])
 
+export const getSupportsRules = (rules, supports) =>
+  rules
+    .filter((rule) => {
+      const isSupportsMatch = rule.supports
+        ? rule.supports
+            .replace(/\s+/g, ' ')
+            .trim()
+            .endsWith(supports.replace(/\s/g, '').trim())
+        : false
+
+      return rule.type === RULE_TYPES.supports && isSupportsMatch
+    })
+    .reduce(
+      (supportsRules, supportsRule) => supportsRules.concat(supportsRule.rules),
+      []
+    )
+
 //
 // Matchers
 /*
@@ -219,13 +237,16 @@ const minRight = /\s+([:;,)\]{}>~/!]|\*\/)/g
 const minify = (s) => s.trim().replace(minLeft, '$1').replace(minRight, '$1')
 
 const toHaveStyleRule = (received, property, value, options = {}) => {
-  const {target, media} = options
+  const {target, media, supports} = options
   const classNames = getClassNamesFromNodes([received])
   const cssString = getStylesFromClassNames(classNames, getStyleElements())
   const styles = css.parse(cssString)
   let preparedRules = styles.stylesheet.rules
   if (media) {
     preparedRules = getMediaRules(preparedRules, media)
+  }
+  if (supports) {
+    preparedRules = getSupportsRules(preparedRules, supports)
   }
   const declaration = preparedRules
     .filter(
