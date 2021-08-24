@@ -18,6 +18,7 @@ export interface CreateSerializerOptions {
 export interface StyleRuleOptions {
   target?: string
   media?: string
+  supports?: string
 }
 export function createSerializer(
   options?: CreateSerializerOptions
