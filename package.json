@@ -1,12 +1,7 @@
 {
   "name": "@dash-ui/jest",
   "version": "2.1.2",
-  "homepage": "https://github.com/dash-ui/jest#readme",
-  "repository": "github:dash-ui/jest",
-  "bugs": "https://github.com/dash-ui/jest/issues",
-  "author": "Jared Lunde <jared.lunde@gmail.com> (https://jaredLunde.com)",
-  "license": "MIT",
-  "description": "Jest utilities for dash-ui",
+  "description": "Jest utilities for @dash-ui",
   "keywords": [
     "jest",
     "dash",
@@ -20,10 +15,12 @@
     "jest dash ui",
     "jest dash serializer"
   ],
-  "main": "dist/main/index.js",
-  "module": "dist/module/index.js",
-  "source": "src/index.js",
-  "types": "types/index.d.ts",
+  "homepage": "https://github.com/dash-ui/jest#readme",
+  "bugs": "https://github.com/dash-ui/jest/issues",
+  "repository": "github:dash-ui/jest",
+  "license": "MIT",
+  "author": "Jared Lunde <jared.lunde@gmail.com> (https://jaredlunde.com/)",
+  "sideEffects": false,
   "exports": {
     ".": {
       "browser": "./dist/module/index.js",
@@ -36,40 +33,36 @@
     "./package.json": "./package.json",
     "./": "./"
   },
+  "main": "dist/main/index.js",
+  "module": "dist/module/index.js",
+  "source": "src/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "/dist",
     "/src",
     "/types"
   ],
-  "sideEffects": false,
   "scripts": {
     "build": "lundle build",
     "dev": "lundle build -f module,cjs -w",
     "format": "prettier --write \"{,!(node_modules|dist|coverage)/**/}*.{ts,js,md,yml,json}\"",
     "lint": "eslint .",
-    "prerelease": "npm run validate && npm run build",
-    "release": "git add . && standard-version -a",
+    "prepare": "husky install",
     "test": "jest",
-    "validate": "npm run lint && npm run test -- --coverage"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "**/*.js": [
-      "eslint",
-      "prettier --write"
-    ],
-    "**/*.{md,yml,json,eslintrc,prettierrc}": [
-      "prettier --write"
-    ]
+    "validate": "pnpm run lint && pnpm run test -- --coverage"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{md,yml,json}": [
+      "prettier --write"
     ]
   },
   "config": {
@@ -84,7 +77,7 @@
     "overrides": [
       {
         "files": [
-          "**/*.test.js"
+          "**/*.test.jsx"
         ],
         "settings": {
           "import/resolver": {
@@ -107,10 +100,17 @@
     "node_modules",
     "coverage",
     "dist",
+    "/types",
     "test",
     "*.config.js"
   ],
   "jest": {
+    "collectCoverageFrom": [
+      "**/src/**/*.js"
+    ],
+    "globals": {
+      "__DEV__": true
+    },
     "moduleDirectories": [
       "node_modules",
       "src",
@@ -119,31 +119,22 @@
     "moduleNameMapper": {
       "^test-utils$": "<rootDir>/test/test-utils.js"
     },
-    "testMatch": [
-      "<rootDir>/src/**/?(*.)test.js"
-    ],
-    "collectCoverageFrom": [
-      "**/src/**/*.js"
-    ],
     "setupFilesAfterEnv": [
       "./test/setup.js"
     ],
     "snapshotResolver": "./test/resolve-snapshot.js",
-    "globals": {
-      "__DEV__": true
-    }
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "bracketSpacing": false
+    "testEnvironment": "jsdom",
+    "testMatch": [
+      "<rootDir>/src/**/?(*.)test.{js,jsx}"
+    ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^9.0.1",
-    "@commitlint/config-conventional": "^9.0.1",
-    "@dash-ui/styles": "^0.5.0",
-    "babel-jest": "latest",
-    "cz-conventional-changelog": "^3.2.0",
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@dash-ui/styles": "^0.8.6",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
+    "cz-conventional-changelog": "latest",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.5.0",
@@ -152,19 +143,42 @@
     "husky": "latest",
     "jest": "latest",
     "lint-staged": "latest",
-    "lundle": "^0.4.9",
+    "lundle": "latest",
     "preact": "10",
     "preact-render-to-json": "^3.6.6",
     "prettier": "latest",
     "pretty-format": "^24.9.0",
     "react": "^16.12.0",
     "react-dom": "^16.13.1",
-    "react-test-renderer": "^16.12.0",
-    "standard-version": "^8.0.2"
+    "react-test-renderer": "^16.12.0"
   },
   "dependencies": {
     "chalk": "^4.0.0",
     "css": "^2.2.4"
   },
-  "peerDependencies": {}
+  "release": {
+    "branches": [
+      "main",
+      "next",
+      "alpha"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "types",
+            "CHANGELOG.md",
+            "package.json"
+          ],
+          "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+        }
+      ],
+      "@semantic-release/github"
+    ]
+  }
 }

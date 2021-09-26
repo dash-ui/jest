@@ -1,8 +1,8 @@
 // eslint-disable-next-line
-import React from 'react'
 import * as enzyme from 'enzyme'
-import {renderJson, createStyle} from 'test-utils'
+import React from 'react'
 import {matchers} from 'index'
+import {createStyle, renderJson} from 'test-utils'
 
 const {toHaveStyleRule} = matchers
 expect.extend(matchers)

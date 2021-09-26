@@ -1,9 +1,9 @@
+import {createStyles} from '@dash-ui/styles'
+import prettyFormat from 'pretty-format'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import prettyFormat from 'pretty-format'
-import {createStyles} from '@dash-ui/styles'
-import {createStyle, renderJson} from 'test-utils'
 import serializer, {createSerializer} from 'index'
+import {createStyle, renderJson} from 'test-utils'
 
 expect.addSnapshotSerializer(serializer)
 afterEach(() => {

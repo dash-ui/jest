@@ -7,29 +7,29 @@ export interface DashMatchers extends jest.ExpectExtendMap {
     property: string,
     value: any,
     options?: StyleRuleOptions
-  ): {message(): string; pass: boolean}
+  ): { message(): string; pass: boolean };
 }
-export const matchers: DashMatchers
+export const matchers: DashMatchers;
 
 export interface CreateSerializerOptions {
-  classNameReplacer?: (className: string, index: number) => string
-  DOMElements?: boolean
+  classNameReplacer?: (className: string, index: number) => string;
+  DOMElements?: boolean;
 }
 export interface StyleRuleOptions {
-  target?: string
-  media?: string
-  supports?: string
+  target?: string;
+  media?: string;
+  supports?: string;
 }
 export function createSerializer(
   options?: CreateSerializerOptions
-): jest.SnapshotSerializerPlugin
+): jest.SnapshotSerializerPlugin;
 export const print: Extract<
   jest.SnapshotSerializerPlugin,
-  {print: any}
->['print']
-export const test: jest.SnapshotSerializerPlugin['test']
-declare const serializer: jest.SnapshotSerializerPlugin
-export default serializer
+  { print: any }
+>["print"];
+export const test: jest.SnapshotSerializerPlugin["test"];
+declare const serializer: jest.SnapshotSerializerPlugin;
+export default serializer;
 
 declare global {
   namespace jest {
@@ -38,7 +38,7 @@ declare global {
         property: string,
         value: any,
         options?: StyleRuleOptions
-      ): R
+      ): R;
     }
   }
 }

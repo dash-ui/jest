@@ -4,8 +4,8 @@
 import {h} from 'preact'
 import render from 'preact-render-to-json'
 import prettyFormat from 'pretty-format'
-import {createStyle} from 'test-utils'
 import serializer, {createSerializer} from 'index'
+import {createStyle} from 'test-utils'
 const {ReactElement, ReactTestComponent, DOMElement} = prettyFormat.plugins
 
 expect.addSnapshotSerializer(serializer)
